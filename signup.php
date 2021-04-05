@@ -3,9 +3,13 @@
 ?>
 <div class="form">
     <form action="includes/signup_inc.php" method="POST">
-        <label for="fullname">Full Name</label>
+        <label for="firstname">First Name</label>
         <br>
-        <input type="text" name="fullname" id="fullname">
+        <input type="text" name="fisrtname" id="firstname">
+        <br>
+        <label for="secondname">Second Name</label>
+        <br>
+        <input type="text" name="secondname" id="secondname">
         <br>
         <label for="username">Username</label>
         <br>

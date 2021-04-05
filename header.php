@@ -10,31 +10,27 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Interior Design Management System</title>
 </head>
-<body>
-      <div class="overlay">
-            <nav>
-            <div class="logo">
-                <h4>The Nav</h4>
-            </div>
-                <ul class="nav-links">
-                    <li><a href="index.php">Home</a></li>
-
-                    <?php
-                        if (isset($_SESSION["userId"])) {
-                            echo '<li><a href="requirements.php">Requirements</a></li>';
-                            echo '<li><a href="drawings.php">Drawings</a></li>';
-                            echo '<li><a href="payments.php">Payments</a></li>';
-                            echo '<li><a href="includes/logout_inc.php">Log Out</a></li>';
-                        } else {
-                            echo '<li><a href="about.php">About Us</a></li>';
-                            echo '<li><a href="portfolio.php">Portfolio</a></li>';
-                            echo '<li><a href="signup.php">Sign Up</a></li>';
-                            echo '<li><a href="login.php">Log In</a></li>';
-                        }
-                    ?>
-
-                </ul>
-            </nav>
+<!--body style='background-image: url("img/amy-humphries-HCggWH-eNkQ-unsplash.jpg")'-->
+  <div class="wrapper">
+    <nav>
+        <div class="logo">
+            <h4><i>Starlight Interiors</i></h4>
         </div>
-</body>
-</html>
+        <ul class="nav-links">
+            <li><a href="index.php">Home</a></li>
+
+            <?php
+                if (isset($_SESSION["userId"])) {
+                    echo '<li><a href="requirements.php">Requirements</a></li>';
+                    echo '<li><a href="drawings.php">Drawings</a></li>';
+                    echo '<li><a href="payments.php">Payments</a></li>';
+                    echo '<li><a href="includes/logout_inc.php">Log Out</a></li>';
+                    } else {
+                        echo '<li><a href="about.php">About Us</a></li>';
+                        echo '<li><a href="services.php">Services</a></li>';
+                        echo '<li><a href="signup.php">Sign Up</a></li>';
+                        echo '<li><a href="login.php">Log In</a></li>';
+                    }
+           ?>
+        </ul>
+    </nav>
