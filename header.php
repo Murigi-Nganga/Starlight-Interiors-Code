@@ -8,9 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <script defer src="js/script.js" type="text/javascript"></script>
     <title>Interior Design Management System</title>
 </head>
-<!--body style='background-image: url("img/amy-humphries-HCggWH-eNkQ-unsplash.jpg")'-->
+<body>
   <div class="wrapper">
     <nav>
         <div class="logo">
@@ -26,8 +27,8 @@
                     echo '<li><a href="payments.php">Payments</a></li>';
                     echo '<li><a href="includes/logout_inc.php">Log Out</a></li>';
                     } else {
-                        echo '<li><a href="about.php">About Us</a></li>';
-                        echo '<li><a href="services.php">Services</a></li>';
+                        echo '<li><a href="about.php">About</a></li>';
+                        echo '<li><a href="services.php">Contact</a></li>';
                         echo '<li><a href="signup.php">Sign Up</a></li>';
                         echo '<li><a href="login.php">Log In</a></li>';
                     }
