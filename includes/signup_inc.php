@@ -1,23 +1,29 @@
 <?php
 
-    if (isset($_POST["submit"])) {
-        $fullname = $_POST["fullname"];
-        $username = $_POST["username"];
+    if (isset($_POST["signup"])) {
+        $idNumber = $_POST["idNumber"];
+        $firstName = $_POST["firstName"];
+        $secondName = $_POST["secondName"];
         $email = $_POST["email"];
         $phoneNo = $_POST["phoneNo"];
         $location = $_POST["location"];
-        $password = $_POST["password"];
-        $repassword = $_POST["repassword"];
+        $password1 = $_POST["password1"];
+        $password2 = $_POST["password2"];
+        /*$addToMailing = $_POST["addToMailing"];*/
 
-        require_once "db_inc.php";
+        require_once "connection_inc.php";
         require_once "functions_inc.php";
 
-        if (emptySignupInput($fullname, $username, $email, $phoneNo, $location, $password, $repassword) !== false) {
+        if (emptySignupInput($idNumber, $firstName, $secondName, $email, $phoneNo, $location, $password1, $password2) !== false) {
             header("location: ../signup.php?error=emptyinput");
             exit();
         }
-        if (invalidUsername($username) !== false) {
-            header("location: ../signup.php?error=invalidusername");
+        if(invalidIDNumber($idNumber) !== false) {
+            header("location: ../signup.php?error=invalidid");
+            exit();
+        }
+        if (invalidName($firstName, $secondName) !== false) {
+            header("location: ../signup.php?error=invalidname");
             exit();
         }
         if (invalidEmail($email) !== false) {
@@ -28,20 +34,24 @@
             header("location: ../signup.php?error=invalidphonenumber");
             exit();
         }
-        if (invalidPassword($password) !== false) {
+        if (invalidName($location, $location) !== false) {
+            header("location: ../signup.php?error=invalidlocation");
+            exit();
+        }
+        if (invalidPassword($password1) !== false) {
             header("location: ../signup.php?error=invalidpassword");
             exit();
         }
-        if (passwordMatch($password, $repassword) !== false) {
+        if (passwordMatch($password1, $password2) !== false) {
             header("location: ../signup.php?error=passwordsdontmatch");
             exit();
         }
-        if (userExists($conn,$username, $email) !== false) {
-            header("location: ../signup.php?error=usernametaken");
+        if (userExists($conn,$idNumber,$email) !== false) {
+            header("location: ../signup.php?error=emailoridtaken");
             exit();
         }
 
-        createUser($conn, $fullname, $username, $email, $phoneNo, $location, $password);
+        createUser($conn, $idNumber, $firstName, $secondName, $email, $phoneNo, $location, $password);
 
    } else {
         header("location: ../signup.php");

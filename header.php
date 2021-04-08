@@ -7,19 +7,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
     <script defer src="js/script.js" type="text/javascript"></script>
     <title>Interior Design Management System</title>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="container">
     <nav>
         <div class="logo">
-            <h4><i>Starlight Interiors</i></h4>
+            <img src="img/logo.png" alt="Image of a camel">
         </div>
-        <ul class="nav-links">
+        <ul>
             <li><a href="index.php">Home</a></li>
-
             <?php
                 if (isset($_SESSION["userId"])) {
                     echo '<li><a href="requirements.php">Requirements</a></li>';

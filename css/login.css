@@ -4,8 +4,9 @@
     font-family: 'Gill Sans MT';
     font-size: 16px;
   }
+
   .container {
-      height: 100%;
+      height: relative;
       width: 100%;
       background-image: radial-gradient(rgba(212, 34, 34, 0.4), rgba(0, 0, 0, 0.4)), url(../img/banner.jpg);
       background-position: center;
@@ -14,44 +15,21 @@
   }
   .form-box {
     width: 380px;
-    height: 640px;
+    height: 650px;
     position: relative;
     margin: 3% auto;
     background: #fff;
-    padding: 5px;
-    border-radius: 30px;
-    overflow: hidden;
-  }
-  .button-box {
-    width: 220px;
-    margin: 35px auto;
-    position: relative;
-    box-shadow: 0 0 20px 9px #ff61241f;
-    border-radius: 30px;
-  }
-  .toggle-btn {
-    padding: 10px 30px;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    outline: none;
-    position: relative;
-  }
-  #btn {
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100px;
-    height: 100%;
-    background: linear-gradient(to right, #ff105f, #ffad06);
-    border-radius: 30px;
-    transition: .5s;
+    padding: 6px;
+    padding-top: 20px;
+    border-radius: 15px;
+    top:-65px;
   }
   .input-group {
-    top: 180px;
     position: absolute;
     width: 280px;
     transition: .5s;
+    padding-top: 30px;
+    padding-left: 13px;
   }
   .input-field {
     width: 100%;
@@ -64,30 +42,73 @@
     outline: none;
     background: transparent;
   }
+
   .submit-btn {
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;
     display: block;
     margin: auto;
-    background: linear-gradient(to right, #ff105f, #ffad06);
+    background: black;
+    color: white;
     outline: none;
     border-radius: 30px;
     border: transparent;
   }
+
   .check-box {
     margin: 30px 10px 30px 0;
   }
-  
   span {
     color: #777;
     font-size: 12px;
     bottom: 68px;
     position: absolute;
   }
-  #login {
-    left: 50px;
+  p {
+      color: black;
+      font-size: 20px;
+      margin-left: 150px;
+      margin-top: 20px;
   }
   #register {
-    left: 450px;
+    left: 40px;
+    top: 40px;
+  }
+
+  #login {
+    left: 40px;
+    top: 150px;
+  }
+
+  div #display-errors {
+    background: linear-gradient(135deg, rgba(4, 5, 4, 0.541), rgba(13, 136, 158, 0.418));
+    border-radius: 6px;
+    width: 350px;
+    padding: 5px;
+    margin-left: 70%;
+  }
+
+  #display-errors p {
+    color:bisque;
+    font-size: 17px;
+    margin-bottom: 15px;
+    margin-left: 18px;
+    margin-right: 15px;
+  }
+
+  #closebutton {
+    margin-left: 15px;
+    color: white;
+    float: right;
+    font-size: 22px;
+    line-height: 8px;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  #closebutton:hover {
+    color:rgb(0, 0, 0);
+    transform: scale(1.25); 
+    transform: translate(0, 0) rotate(180deg);
   }

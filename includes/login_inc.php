@@ -1,19 +1,19 @@
 <?php
 
-    if (isset($_POST["submit"])) {
+    if (isset($_POST["login"])) {
 
-        $username = $_POST["username"];
+        $emailorid = $_POST["emailorid"];
         $password = $_POST["password"];
 
-        require_once "db_inc.php";
+        require_once "connection_inc.php";
         require_once "functions_inc.php";
 
-        if (emptyLoginInput($username, $password) !== false) {
+        if (emptyLoginInput($emailorid, $password) !== false) {
             header("location: ../login.php?error=emptyinput");
             exit();
         }
 
-        loginUser($conn, $username, $password);
+        loginUser($conn, $emailorid, $password);
 
     } else {
         header("location: ../login.php");

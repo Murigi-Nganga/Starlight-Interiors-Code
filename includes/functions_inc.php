@@ -1,21 +1,30 @@
 <?php
-    function emptySignupInput($fullname, $username, $email, $phoneNo, $location, $password, $repassword) {
-        $result = false;
-        if (empty($fullname) || empty($username) || empty($email) || empty($phoneNo) || empty($location) || empty($password) || empty($repassword)) {
-            $result = true;      //Yes, there is a mistake
-        }
-        return $result;
-    }
 
-    function invalidUsername($username) {
+    function emptySignupInput($idNumber, $firstName, $secondName, $email, $phoneNo, $location, $password1, $password2) {
         $result = false;
-        if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) { 
+        if (empty($idNumber) || empty($firstName) || empty($secondName) || empty($email) || empty($phoneNo) || empty($location) || empty($password1) || empty($password2)) {
             $result = true;
         }
         return $result;
     }
 
-    function invalidEmail($email) {     ////To review this
+    function invalidIDNumber($idNumber) {
+        $result = false;
+        if (!(is_numeric($idNumber)) && (strlen($idNumber)<10 || strlen($idNumber)>7 )) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    function invalidName($firstName, $secondName) {
+        $result = false;
+        if (!(preg_match("/^[a-zA-Z]*$/", $firstName) && preg_match("/^[a-zA-Z]*$/", $secondName))) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    function invalidEmail($email) { 
         $result = false;
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $result = true;
@@ -23,9 +32,11 @@
         return $result;
     }
 
-    function invalidPhoneNo($phoneNo) {    ////To review this
+    function invalidPhoneNo($phoneNo) {
         $result = false;
         $validNum = filter_var($phoneNo, FILTER_SANITIZE_NUMBER_INT);
+        $validNum = str_replace("+", "", $validNum);
+        $validNum = str_replace("-", "", $validNum);
         if (strlen($validNum) < 10 || strlen(strlen($validNum) > 15) ) {
             $result = true;
         }
@@ -40,7 +51,6 @@
         foreach (str_split($password) as $item) {
             if (is_numeric($item)){
                 $hasNum = true;
-                echo "Number has been found";
                 break;
             }
         }
@@ -48,105 +58,89 @@
             foreach ($mustHaveChar as $char) {
                 if ($item == $char) {
                     $hasChar = true;
-                    echo "Character has been found";
                     break;
                 }
             }
         }
-        if(strlen($password) < 6 || strlen($password) > 15 || $hasChar == false || $hasNum == false) {
+        if(strlen($password) < 6 || strlen($password) > 15 || $hasChar === false || $hasNum === false) {
             $result = true;
         }
         return $result;
     }
 
-    function passwordMatch($password, $repassword) {
+    function passwordMatch($password1, $password2) {
         $result = false;
-        if (!$password == $repassword) {
+        if ($password1 !== $password2) {
             return true;
         }
         return $result;
     }
 
-    function userExists($conn,$username,$email) {
-        $sql = "SELECT * FROM users WHERE Username = ? OR Email = ?;"; //Used to execute dynamic sql
-        $stmt = mysqli_stmt_init($conn); // Use prepared statements to make it secure and run without input from the user
-
-        if(!mysqli_stmt_prepare($stmt, $sql) ) {
-            header: ("location: ../includes/signup.php?error=stmtfailed");
+    function userExists($conn,$idNumber,$email) {     //Used for sign up and log in to check if the user exists
+        $sql = "SELECT * FROM clients WHERE IdNumber = ? OR Email = ?"; 
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+            header("location: signup.php?error=stmtexistsfailed"); //To change error
             exit();
         }
-
-        mysqli_stmt_bind_param($stmt, "ss", $username, $email);
-        mysqli_stmt_execute($stmt);
-        $resultData = mysqli_stmt_get_result($stmt);
-
-        if ($row = mysqli_fetch_assoc($resultData)) { //To give function a second purpose
+        $stmt->bind_param("is", $idNumber,  $email);
+        $stmt->execute();
+        $resultData = $stmt->get_result();
+        if ($row = $resultData->fetch_assoc()) {
             return $row;
-        } else  {
+        } else {
             $result = false;
             return $result;
         }
-        mysqli_stmt_close($stmt);
+        $stmt->close();
     }
 
-    /*function createUser($conn, $fullname, $username, $email, $phoneNo, $location, $password) {
-        $sql = "INSERT INTO users (FullName, Username, Email, PhoneNo, Location, Userpass) VALUES ('$fullname', '$username', '$email', '$phoneNo', '$location', '$password');";
-        $run_query = mysqli_query($conn,$sql);
-        if(!$run_query) {
-            echo "Could not run query!!";
-        }
-    }*/
+    function createUser($conn, $idNumber, $firstName, $secondName, $email, $phoneNo, $location, $password) {
+        $sql = "INSERT INTO clients (IdNumber, FirstName, SecondName, Email, PhoneNumber, Location, Password) VALUES (?, ?, ?, ?, ?, ?,?);"; //Used to execute dynamic sql
+        $stmt = $conn->prepare($sql); // Use prepared statements to make it secure and run without input from the user
 
-    function createUser($conn, $fullname, $username, $email, $phoneNo, $location, $password) {
-        $sql = "INSERT INTO users (FullName, Username, Email, PhoneNo, Location, Userpass) VALUES (?, ?, ?, ?, ?, ?);"; //Used to execute dynamic sql
-        $stmt = mysqli_stmt_init($conn); // Use prepared statements to make it secure and run without input from the user
-
-        if(!mysqli_stmt_prepare($stmt, $sql) ) {
-            header: ("location: ../includes/signup.php?error=stmtfailed");
+        if(!$stmt) {
+            header("location: signup.php?error=stmtcreateuserfailed"); //To change error
             exit();
         }
 
         $hashpassword = password_hash($password, PASSWORD_DEFAULT);
-        echo $hashpassword;
 
-        mysqli_stmt_bind_param($stmt, "ssssss", $fullname, $username, $email, $phoneNo, $location, $hashpassword);
-        mysqli_stmt_execute($stmt);
-        mysqli_stmt_close($stmt);
-
-        header("location: ../signup.php?error=none");
-        //exit(); - To exclude to allow user to be redirected to the Log in Page in signup_inc.php
+        $stmt->bind_param("isssiss", $idNumber, $firstName, $secondName, $email, $phoneNo, $location, $hashpassword);
+        $stmt->execute();
+        $stmt->close();
+        header("location: ../login.php?error=none");
+        exit();
     }
 
-    function emptyLoginInput($username, $password) {
+    function emptyLoginInput($emailorid, $password) {
         $result = false;
-        if (empty($username) || empty($password)) {
-            $result = true;      //Yes, there is a mistake
+        if (empty($emailorid) || empty($password)) {
+            $result = true;      
         }
         return $result;
     }
 
-    function loginUser($conn, $username, $password) {
-        $userExists = userExists($conn,$username,$username);//Used twice (fits into email or username) + returns array
+    function loginUser($conn, $emailorid, $password) {
+        $userExists = userExists($conn,$emailorid,$emailorid);
 
-        if ($userExists == false) {
-            header("location: ../login.php?error=wronglogin");
+        if ($userExists === false) {
+            header("location: ../login.php?error=wronglogin");   
             exit();
         }
 
-        $hashpassword = $userExists["Userpass"];
+        $hashpassword = $userExists["Password"];
         $checkPassword = password_verify($password, $hashpassword);
 
-        if ($checkPassword == false) {
-            header("location: ../login.php?error=wronglogin");
+        if ($checkPassword === false) {
+        header("location: ../login.php?error=wronglogin");
             exit();
         }
-        else if ($checkPassword == true) {
+        else if ($checkPassword === true) {
             session_start();                        //Start a session if the password is correct
-            $_SESSION["userId"] = $userExists["userId"];
-            $_SESSION["Username"] = $userExists["Username"];
+            $_SESSION["IdNumber"] = $userExists["IdNumber"];
+            $_SESSION["FirstName"] = $userExists["FirstName"];
             header("location: ../index.php");
             exit();
         }
     }
-
-
