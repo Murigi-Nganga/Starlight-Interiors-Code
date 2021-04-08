@@ -13,7 +13,7 @@
             echo "<p>ID Number must be between 7 and 10 characters</p>";
         }
         if ($_GET["error"] === "invalidname") {
-            echo "<p>Only letters are allowed for the first and second names</p>";
+            echo "<p>Only letters are allowed for the first and second names (without spaces)</p>";
         }
         if ($_GET["error"] === "invalidemail") {
             echo "<p>Please choose a proper email</p>";

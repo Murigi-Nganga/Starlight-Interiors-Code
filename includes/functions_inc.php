@@ -1,6 +1,6 @@
 <?php
 
-    function emptySignupInput($idNumber, $firstName, $secondName, $email, $phoneNo, $location, $password1, $password2) {
+function emptySignupInput($idNumber, $firstName, $secondName, $email, $phoneNo, $location, $password1, $password2) {
         $result = false;
         if (empty($idNumber) || empty($firstName) || empty($secondName) || empty($email) || empty($phoneNo) || empty($location) || empty($password1) || empty($password2)) {
             $result = true;
@@ -78,37 +78,36 @@
 
     function userExists($conn,$idNumber,$email) {     //Used for sign up and log in to check if the user exists
         $sql = "SELECT * FROM clients WHERE IdNumber = ? OR Email = ?"; 
-        $stmt = $conn->prepare($sql);
-        if(!$stmt) {
-            header("location: signup.php?error=stmtexistsfailed"); //To change error
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: signup.php?error=stmtfailed"); //To change error
             exit();
         }
-        $stmt->bind_param("is", $idNumber,  $email);
-        $stmt->execute();
-        $resultData = $stmt->get_result();
-        if ($row = $resultData->fetch_assoc()) {
+        mysqli_stmt_bind_param($stmt, "is", $idNumber,  $email);
+        mysqli_stmt_execute($stmt);
+        $resultData = mysqli_stmt_get_result($stmt);
+
+        if ($row = mysqli_fetch_assoc($resultData)) {
             return $row;
         } else {
             $result = false;
             return $result;
         }
-        $stmt->close();
+        mysqli_stmt_close($stmt);
     }
 
     function createUser($conn, $idNumber, $firstName, $secondName, $email, $phoneNo, $location, $password) {
         $sql = "INSERT INTO clients (IdNumber, FirstName, SecondName, Email, PhoneNumber, Location, Password) VALUES (?, ?, ?, ?, ?, ?,?);"; //Used to execute dynamic sql
-        $stmt = $conn->prepare($sql); // Use prepared statements to make it secure and run without input from the user
-
-        if(!$stmt) {
-            header("location: signup.php?error=stmtcreateuserfailed"); //To change error
+        $stmt = mysqli_stmt_init($conn);
+        if(!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: signup.php?error=stmtfailed"); 
             exit();
         }
 
         $hashpassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt->bind_param("isssiss", $idNumber, $firstName, $secondName, $email, $phoneNo, $location, $hashpassword);
-        $stmt->execute();
-        $stmt->close();
+        mysqli_stmt_bind_param($stmt, "isssiss", $idNumber, $firstName, $secondName, $email, $phoneNo, $location, $hashpassword);
+        mysqli_stmt_execute($stmt);
         header("location: ../login.php?error=none");
         exit();
     }
@@ -129,13 +128,15 @@
             exit();
         }
 
-        $hashpassword = $userExists["Password"];
-        $checkPassword = password_verify($password, $hashpassword);
+        $hashedpassword = $userExists["Password"];
+        
+        $checkPassword = password_verify($password, $hashedpassword);
 
         if ($checkPassword === false) {
         header("location: ../login.php?error=wronglogin");
             exit();
         }
+
         else if ($checkPassword === true) {
             session_start();                        //Start a session if the password is correct
             $_SESSION["IdNumber"] = $userExists["IdNumber"];

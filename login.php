@@ -22,8 +22,9 @@
         <p>Log In</p> <br>
         <form id="login" class="input-group" method="POST" action="includes/login_inc.php" >
           <input name="emailorid" type="text" class="input-field" placeholder="Email or ID Number">
-          <input name="password" type="password" class="input-field" placeholder="Enter Password">
-          <input type="checkbox" class="check-box"><span>Add me to the mailing list</span>
+          <input name="password" type="password" class="input-field" placeholder="Enter Password"> 
+          <br><br> <br> <br>
+          <!--input type="checkbox" class="check-box"><span>Add me to the mailing list</span-->
           <button name="login" type="submit" class="submit-btn">Log In</button>
         </form>
     </div>
