@@ -6,13 +6,72 @@
   }
 
   .container {
-      height: relative;
       width: 100%;
-      background-image: radial-gradient(rgba(212, 34, 34, 0.4), rgba(0, 0, 0, 0.4)), url(../img/banner.jpg);
+      background-image: radial-gradient(rgba(212, 34, 34, 0.4), rgba(0, 0, 0, 0.4)), url(../images/banner.jpg);
       background-position: center;
       background-size: cover;
       position: absolute;
   }
+
+    /* Header section */
+nav ul li {
+      list-style: none;
+      display: inline-block;
+      margin: 0px 33px 0px 0px;
+      position: relative;
+  }
+  nav ul li a:hover {
+      color: bisque;
+  }
+  
+  nav ul li a {
+      text-decoration: none;
+      color: white;
+      text-transform: uppercase;
+      font-size: 15px;
+  }
+  
+  nav ul li::after {
+      content: ' ';
+      height: 3px;
+      width: 0;
+      background: bisque;
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      transition: .5s;
+  }
+  
+  nav ul li:hover::after {
+      width: 100%;
+  }
+  
+  nav {
+      width: 100%;
+      padding: 18px 30px;
+      display: flex;
+      align-items: center;
+      justify-content:space-around;
+      position: fixed;
+      z-index: 1;
+  }
+  
+  .logo img {
+      width: 50px;
+      cursor: pointer;
+  }
+
+  .coname {
+      text-transform: uppercase;
+      color: white;
+      font-size: 18px;
+      position: center;
+      margin-left: 20%;
+      font-family: 'Trebuchet MS';
+      cursor: pointer;
+  }
+  /* End Header section */
+
   .form-box {
     width: 380px;
     height: 650px;
@@ -22,7 +81,7 @@
     padding: 6px;
     padding-top: 20px;
     border-radius: 15px;
-    top:-65px;
+    margin-top: 10%;
   }
   .input-group {
     position: absolute;
@@ -49,22 +108,21 @@
     cursor: pointer;
     display: block;
     margin: auto;
-    background: black;
-    color: white;
+    color:rgb(0, 0, 0);
     outline: none;
     border-radius: 30px;
-    border: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    background: rgb(255,255,255);
   }
 
-  .check-box {
-    margin: 30px 10px 30px 0;
+  .submit-btn:hover {
+    
+    background: black;
+    transition: .5s;
+    border: transparent;
+    color: white;
   }
-  span {
-    color: #777;
-    font-size: 12px;
-    bottom: 68px;
-    position: absolute;
-  }
+
   p {
       color: black;
       font-size: 20px;
@@ -81,20 +139,33 @@
     top: 150px;
   }
 
-  div #display-errors {
-    background: linear-gradient(135deg, rgba(4, 5, 4, 0.541), rgba(13, 136, 158, 0.418));
+#display-errors, #display-db-errors{
+    background: linear-gradient(135deg, rgba(4, 5, 4, 0.541), rgba(39, 9, 95, 0.418));
+    position: absolute;
     border-radius: 6px;
     width: 350px;
     padding: 5px;
     margin-left: 70%;
+    margin-top: 11%;
+    transition: .5s;
+    color: bisque;
   }
 
-  #display-errors p {
-    color:bisque;
+  #display-errors {
+    display: none;
+  }
+
+  #display-db-errors {
+    display: block;
+  }
+
+  #display-errors p, #display-db-errors p{
+    color:inherit;
     font-size: 17px;
     margin-bottom: 15px;
     margin-left: 18px;
     margin-right: 15px;
+    display: inherit;
   }
 
   #closebutton {
@@ -110,5 +181,5 @@
   #closebutton:hover {
     color:rgb(0, 0, 0);
     transform: scale(1.25); 
-    transform: translate(0, 0) rotate(180deg);
+    transform: rotate(180deg);
   }
