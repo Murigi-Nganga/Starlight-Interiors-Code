@@ -13,7 +13,6 @@ document.addEventListener('scroll', () => {
   nav.style.transition = '.6s'
 });
 
-
 function emptyInput(...values) {                                
     let isEmpty = false
     for(let i=0;i<values.length;i++) {
@@ -126,7 +125,7 @@ if (reqform !== null) {
         }
         
         if (messages.length > 0) {
-            window.location.href = 'http://localhost/StarlightCode%20+%20Website/php/requirements.php#reqform'
+            window.location.href = 'http://localhost/Starlight-Interiors-Code/php/requirements.php#reqform'
             e.preventDefault()
             if(messages[0] === "Please fill in all fields<br>") {
                 messages = messages.splice(0,1)

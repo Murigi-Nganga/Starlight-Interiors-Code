@@ -72,19 +72,6 @@ nav {
 }
 /*End of Navigation Section*/
 
-/*Previous Requirements Section*/
-.previous-requirements {
-    display: flex;
-    flex-wrap: wrap;
-    transition: .6s;
-}
-
-.previous-requirements img{
-    height: 280px;
-    border-radius: 10px;
-    margin: 25px;
-}
-
 #display-errors{
     background: radial-gradient(rgb(41, 50, 60,0.9),rgba(0, 0, 0, 0.8));
     position: absolute;
@@ -132,13 +119,20 @@ form {
 }
 
 form input, select {
+    outline: none;
     padding: 17px 20px;
     border: none;
     border-bottom: 1px solid green;
     outline: none;
 }
 
-#submit-req {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#submit-pay {
     width: 28%;
     padding: 10px 30px;
     cursor: pointer;
@@ -151,15 +145,12 @@ form input, select {
     background: white;
   }
 
-  #submit-req:hover {
+  #submit-pay:hover {
     background: black;
     transition: .5s;
     border: transparent;
     color: white;
   }
-
-  
-
 
   /* Footer */
 #footer {
@@ -200,4 +191,3 @@ form input, select {
 	color: white;
 	font-size: 1.3rem;
 }
-/* End Footer */

@@ -50,6 +50,13 @@
         <form id='login' class="input-group" method="POST" action="../includes/login_inc.php">
           <input id="emailorid" name="emailorid" type="text" class="input-field" placeholder="Email or ID Number">
           <input id="password" name="password" type="password" class="input-field" placeholder="Enter Password">
+          <br><br>
+          <label for="Select Role">Select Role</label> 
+          <select name="role" id="role">
+            <option value="client">Client</option>
+            <option value="designer">Designer</option>
+            <option value="admin">Administrator</option>
+          </select>
           <br><br> <br> <br>
           <button name="login" type="submit" class="submit-btn">Log In</button>
         </form>

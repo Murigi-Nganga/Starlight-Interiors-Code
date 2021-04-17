@@ -22,19 +22,10 @@
         </div>
         <ul>
             <li><a href="index.php">Home</a></li>
-            <?php
-                if (isset($_SESSION["IdNumber"])) {
-                    echo '<li><a href="requirements.php">Requirements</a></li>';
-                    echo '<li><a href="drawings.php">Drawings</a></li>';
-                    echo '<li><a href="payments.php">Payments</a></li>';
-                    echo '<li><a href="includes/logout_inc.php">Log Out</a></li>';
-                    } else {
-                        echo '<li><a href="about.php">About</a></li>';
-                        echo '<li><a href="services.php">Contact</a></li>';
-                        echo '<li><a href="login.php">Log In</a></li>';
-                        echo '<li><a href="signup.php">Sign Up</a></li>';
-                    }
-           ?>
+            <li><a href="about.php">About</a></li>
+            <li><a href="services.php">Contact</a></li>
+            <li><a href="login.php">Log In</a></li>
+            <li><a href="signup.php">Sign Up</a></li>
         </ul>
     </nav>
   <!-- End Header -->

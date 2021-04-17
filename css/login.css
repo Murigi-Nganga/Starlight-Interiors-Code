@@ -70,6 +70,10 @@ nav ul li {
       font-family: 'Trebuchet MS';
       cursor: pointer;
   }
+
+  ul img {
+    height: 20px;
+  }
   /* End Header section */
 
   .form-box {
@@ -100,6 +104,13 @@ nav ul li {
     border-left: 0;
     outline: none;
     background: transparent;
+  }
+
+  select {
+    margin-left: 25px;
+      border: none;
+      border-bottom: 1px solid rgb(0, 0, 0);
+      outline: none;
   }
 
   .submit-btn {

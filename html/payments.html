@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/payments.css">
+    <script defer src="../js/payments.js"></script>
+    <title>Interior Design Management System</title>
+</head>
+<body>
+    <nav id= 'nav'>
+        <div class="logo">
+            <img src="../images/logo.png" alt="Image of a camel">
+        </div>
+        <div class="coname">
+            Starlight Interiors
+        </div>
+        <ul>
+            <li><a href="../php/index.php">Home</a></li>
+            <li><a href="../php/requirements.php">Requirements</a></li>
+            <li><a href="../php/drawings.php">Drawings</a></li>
+            <li><a href="../php/payments.php">Payments</a></li>
+            <li><a href="../includes/logout_inc.php">Log Out</a></li>
+        </ul>
+    </nav>
+
+    <div id='display-errors'></div>
+	<div class="formarea">
+        <h1 style="text-align: center; font-weight:bolder; font-size:21px; text-decoration:underline;">Requirements Specification</h1>
+        <br><br>
+
+    <form id='payform' name='payform'  action="#" method="POST">
+
+        <label for="amountPaid">1. Enter the amount paid</label>
+		<input id="amountPaid" type="number" name="amountPaid" min="2000"> <br>
+
+        <label for="paymentPlatform">2.Choose your payment platform</label>
+        <select name="paymentPlatform" id="paymentPlatform">
+            <option value="Credit Card">Credit Card</option>
+            <option value="M-Pesa">M-pesa</option>
+            <option value="Airtel Money">Airtel Money</option>
+        </select><br>
+
+        <label for="paymentPurpose">3. Enter the purpose of payment</label>
+		<select name="paymentPurpose" id="paymentPurpose">
+            <option value="Design Only">Design Only</option>
+            <option value="Implemementation Only">Implemenation Only</option>
+            <option value="Design And Implementation">Design And Implementation</option>
+        </select>
+        <br> <br>
+        <button id="submit-pay" name="submit-pay" type='submit' >Submit Details</button>
+    </form>
+    </div>
+      <!-- Footer -->
+  <section id="footer">
+    <div class="footer container">
+      <div class="social-icon">
+        <div class="social-item">
+          <!--We are Social 😁</h3-->
+          <a href="#"><img src="../images/gp.png"/></a>
+        </div>
+        <div class="social-item">
+          <a href="#"><img src="../images/fb.png"/></a>
+        </div>
+        <div class="social-item">
+          <a href="#"><img src="../images/tw.png"/></a>
+        </div>
+      </div>
+      <p>Copyright © 2021 Starlight Interiors. All rights reserved</p>
+    </div>
+  </section>
+  <!-- End Footer -->
+</body>
+</html>
