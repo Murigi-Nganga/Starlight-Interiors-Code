@@ -38,13 +38,13 @@
         }
         if($_GET['error'] === 'wronglogin') {
           echo "<p>You have entered incorrect login details</p>";
+          echo "<p>Also check if you have selected the correct role</p>";
       }
         echo '</div>';
   } 
   ?>
   <!-- End Header -->
     <div id="display-errors"></div>
-
       <div class="form-box">
         <p>Log In</p> <br>
         <form id='login' class="input-group" method="POST" action="../includes/login_inc.php">

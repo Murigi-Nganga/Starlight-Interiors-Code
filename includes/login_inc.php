@@ -12,9 +12,9 @@
         if($role === 'client') {
             loginUser($conn, $emailorid, $password);
         } elseif ($role === 'designer') {
-            //loginDesigner($conn, $emailorid, $password));
+            loginDesigner($conn, $emailorid, $password);
         } elseif ($role === 'admin') {
-            //loginAdmin($conn, $emailorid, $password));
+            loginAdmin($conn, $emailorid, $password);
         }
         
 

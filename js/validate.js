@@ -7,11 +7,31 @@ document.addEventListener('scroll', () => {
 	var scroll_position = window.scrollY
 	if (scroll_position > 5) {
 		nav.style.backgroundColor = '#29323c'
+        nav.style.zIndex = '100'
 	} else {
 		nav.style.backgroundColor = 'transparent'
 	}
   nav.style.transition = '.6s'
 });
+
+//Client-Designer Sign Up Form Slider
+const register  = document.getElementById('register')
+const designerRegister  = document.getElementById('designer-register')
+const button = document.getElementById('btn')
+
+function clientSignUp() {
+    register.style.left= '50px';
+    designerRegister.style.left= '450px'
+    button.style.left = '0'
+}
+
+function designerSignUp() {
+    register.style.left = '-400px';
+    designerRegister.style.left = '50px'
+    button.style.left = '110px'
+}
+
+/*End of Slider*/
 
 function emptyInput(...values) {                                
     let isEmpty = false
@@ -69,7 +89,7 @@ function valuesMatch(value1, value2) {
 /**End Of Validation Functions */
 
 /*HTML Elements*/
-const register = document.getElementById('register')
+//const register = document.getElementById('register') ----Declared above (Line 17)
 const idNumber = document.getElementById('idNumber')
 const firstName = document.getElementById('firstName')
 const secondName = document.getElementById('secondName')

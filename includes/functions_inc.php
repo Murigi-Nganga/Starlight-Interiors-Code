@@ -106,6 +106,24 @@
 
     }
 
+    //Add a Designer
+    function createDesigner($conn, $idNumber, $firstName, $secondName, $email, $phoneNo, $location, $password) {
+        $sql = "INSERT INTO designers (DesignerID, FirstName, SecondName, Email, PhoneNumber, Location, Password) 
+                    VALUES (?, ?, ?, ?, ?, ?,?);"; //Used to execute dynamic sql
+        $stmt = $conn->prepare($sql);;
+        if(!$stmt) {
+            header("location: ../php/signup.php?error=stmtfailed"); 
+            exit();
+        }
+
+        $hashpassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt->execute([$idNumber, $firstName, $secondName, $email, $phoneNo, $location,$hashpassword]);
+
+        header("location: ../php/login.php?error=none");
+        exit();
+    }
+
     //Designer Login
     function loginDesigner($conn, $emailorid, $password) {
         $designerExists = designerExists($conn,$emailorid,$emailorid);
@@ -158,19 +176,19 @@
         $adminExists = adminExists($conn,$emailorid,$emailorid);
 
         if ($adminExists === false) {
-            header("location: ../php/login.php?error=wronglogin");   
+            header("location: ../php/login.php?error=wrongloginkwakuexist");   
             exit();
         }
-        $hashedpassword = $adminExists["Password"];
+        /*$hashedpassword = $adminExists["Password"];
         
-        $checkPassword = password_verify($password, $hashedpassword);
+        $checkPassword = password_verify($password, $hashedpassword);*/
 
 
-        if ($checkPassword === false) {
+        if (!($password === $adminExists["Password"])) {
         header("location: ../php/login.php?error=wronglogin");
             exit();
         }
-        else if ($checkPassword === true) {
+        else if ($password === $adminExists["Password"]) {
             session_start();                        //Start a session if the password is correct
             $_SESSION["AdminID"] = $adminExists["AdminID"];
             header("location: ../php/index.php");

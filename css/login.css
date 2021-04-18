@@ -7,11 +7,18 @@
 
   .container {
       width: 100%;
-      background-image: radial-gradient(rgba(212, 34, 34, 0.4), rgba(0, 0, 0, 0.4)), url(../images/banner.jpg);
+      background-image: radial-gradient(rgba(16, 94, 35, 0.219), rgba(0, 0, 0, 0.4)), url(../images/banner.jpg);
       background-position: center;
       background-size: cover;
       position: absolute;
   }
+
+  /* #myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+} */
 
     /* Header section */
 nav ul li {
@@ -86,14 +93,51 @@ nav ul li {
     padding-top: 20px;
     border-radius: 15px;
     margin-top: 10%;
+    overflow: hidden;
   }
+
+  /*Button Slider from Client to Designer*/
+  .slider-area {
+    width: 240px;
+	margin: 15px auto;
+	position: relative;
+	box-shadow: 7px 3px 7px rgba(28, 26, 148, 0.438);
+    border-radius: 22px;
+    background-color: rgb(66, 145, 125);
+  }
+
+
+  .slider-btns {
+	  position: relative;
+	  padding: 10px 30px;
+	  background: transparent;
+	  border: 0;
+	  outline: none;
+	  color:#fff;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  #btn { /*The one that will slide on a click event*/
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 130px;
+	height: 100%;
+	background: rgb(0, 0, 0);
+	border-radius: 22px;
+	transition: .5s;
+	cursor: pointer;
+  }
+
   .input-group {
     position: absolute;
     width: 280px;
     transition: .5s;
-    padding-top: 30px;
+    padding-top: 80px;
     padding-left: 13px;
   }
+
   .input-field {
     width: 100%;
     padding: 10px 0;
@@ -127,7 +171,6 @@ nav ul li {
   }
 
   .submit-btn:hover {
-    
     background: black;
     transition: .5s;
     border: transparent;
@@ -140,7 +183,7 @@ nav ul li {
       margin-left: 150px;
       margin-top: 20px;
   }
-  #register {
+  #register{
     left: 40px;
     top: 40px;
   }
@@ -150,8 +193,14 @@ nav ul li {
     top: 150px;
   }
 
+  #designer-register {
+	  top: 60px;
+	  left: 450px;
+  }
+
+
 #display-errors, #display-db-errors{
-    background: linear-gradient(135deg, rgba(4, 5, 4, 0.541), rgba(39, 9, 95, 0.418));
+    background: radial-gradient(rgba(7, 85, 109, 0.418), rgba(4, 5, 4, 0.541));
     position: absolute;
     border-radius: 6px;
     width: 350px;
@@ -190,7 +239,7 @@ nav ul li {
   }
 
   #closebutton:hover {
-    color:rgb(0, 0, 0);
+    color:rgb(233, 153, 153);
     transform: scale(1.25); 
     transform: rotate(180deg);
   }
