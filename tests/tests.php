@@ -23,14 +23,14 @@
        }
 
 
-        $sql = file_get_contents("test.sql");      
-        $conn->exec($sql);
+        // $sql = file_get_contents("test.sql");      
+        // $conn->exec($sql);
 
 //$sql_lines = explode(';', $sql);     //Separator, input_string....... 
 //    $conn->query($sql);      --------->Executing several lines without prepared statements
 //    Successful
 // *********************************************
-//Using prepared statements
+//Updating table data
 
 
 

@@ -57,7 +57,8 @@
         }
         else if ($checkPassword === true) {
             session_start();                        //Start a session if the password is correct
-            $_SESSION["ClientID"] = $userExists["ClientID"];
+            $_SESSION["userID"] = $userExists["ClientID"];
+            $_SESSION["role"] = "client";
             $_SESSION["FirstName"] = $userExists["FirstName"];
             header("location: ../php/index.php");
             exit();
@@ -143,7 +144,8 @@
         }
         else if ($checkPassword === true) {
             session_start();                        //Start a session if the password is correct
-            $_SESSION["DesignerID"] = $designerExists["DesignerID"];
+            $_SESSION["userID"] = $designerExists["DesignerID"];
+            $_SESSION["role"] = "designer";
             $_SESSION["FirstName"] = $designerExists ["FirstName"];
             header("location: ../php/index.php");
             exit();
@@ -176,7 +178,7 @@
         $adminExists = adminExists($conn,$emailorid,$emailorid);
 
         if ($adminExists === false) {
-            header("location: ../php/login.php?error=wrongloginkwakuexist");   
+            header("location: ../php/login.php?error=wronglogin");   
             exit();
         }
         /*$hashedpassword = $adminExists["Password"];
@@ -190,7 +192,8 @@
         }
         else if ($password === $adminExists["Password"]) {
             session_start();                        //Start a session if the password is correct
-            $_SESSION["AdminID"] = $adminExists["AdminID"];
+            $_SESSION["userID"] = $adminExists["AdminID"];
+            $_SESSION["role"] = "admin";
             header("location: ../php/index.php");
             exit();
         }
