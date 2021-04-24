@@ -28,7 +28,7 @@
             <li><a href="about.php">About</a></li>
             <li><a href="services.php">Contact</a></li>
             <li><a href="login.php">Log In</a></li>
-            <li><a href="signup.php">Sign Up</a></li>
+            <li><a href="signup.php" style="color:peru; font-weight:bold;">Sign Up</a></li>
         </ul>
     </nav>
   <!-- End Header -->

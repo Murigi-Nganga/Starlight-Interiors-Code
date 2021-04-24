@@ -19,7 +19,7 @@
             <li><a href="../php/index.php">Home</a></li>
             <li><a href="../php/requirements.php">Requirements</a></li>
             <li><a href="../php/drawings.php">Drawings</a></li>
-            <li><a href="../php/payments.php">Payments</a></li>
+            <li><a href="../php/payments.php" style="color:peru">Payments</a></li>
             <li><a href="../includes/logout_inc.php">Log Out</a></li>
         </ul>
     </nav>
@@ -29,7 +29,7 @@
         <h1 style="text-align: center; font-weight:bolder; font-size:21px; text-decoration:underline;">Requirements Specification</h1>
         <br><br>
 
-    <form id='payform' name='payform'  action="#" method="POST">
+    <form id='payform' name='payform'  action="../includes/payments_inc.php" method="POST">
 
         <label for="amountPaid">1. Enter the amount paid</label>
 		<input id="amountPaid" type="number" name="amountPaid"> <br>

@@ -7,18 +7,11 @@
 
   .container {
       width: 100%;
-      background-image: radial-gradient(rgba(16, 94, 35, 0.219), rgba(0, 0, 0, 0.4)), url(../images/banner.jpg);
+      background-image: radial-gradient(rgba(25, 25, 29, 0.904), rgba(8, 8, 10, 0.144)), url(../images/banner.jpg);
       background-position: center;
       background-size: cover;
       position: absolute;
   }
-
-  /* #myVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-} */
 
     /* Header section */
 nav ul li {

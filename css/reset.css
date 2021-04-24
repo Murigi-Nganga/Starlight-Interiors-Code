@@ -1,0 +1,9 @@
+* , form, h2, h1, p, input{
+    padding: none;
+    border: none;
+    margin: none;
+    box-sizing: border-box;
+    background: none;
+}
+
+/* Mehr hinzufuegen */

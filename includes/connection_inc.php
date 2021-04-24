@@ -20,5 +20,4 @@
 
         echo "Connection failed: " . $error->getMessage();
         exit;
-
     }

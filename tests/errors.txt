@@ -1,0 +1,4 @@
+SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+Insert value list does not match column list: the SQL statement consists of first a list of columns then a list of values, these two do not match.
+1136 Column count doesn't match value count at row 1 the problem is that the number of listed values is not the same as the number of listed columns.
+********************************************************************************************************************************

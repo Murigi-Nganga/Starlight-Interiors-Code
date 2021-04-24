@@ -94,33 +94,41 @@ if (reqform !== null) {
 
         if(invalidName(typeofroom.value)) {
             messages.push("Only letters are allowed for the type of room<br>")
+            typeofroom.value = null
         }
 
         if(invalidExtension(roompic.value)) {
             messages.push("Type of file is not allowed<br>")
+            roompic.value = null
         }
 
         if(invalidSize(approxsize.value)) {
             messages.push("Only letters and numbers are allowed<br>")
+            approxsize.value = null
         }
 
         if(invalidName(colors.value.replaceAll(',',''))) {
             messages.push("Only letters are allowed for colors<br>")
+            colors.value = null
         }
 
         if(invalidName(discolors.value.replaceAll(',',''))) {
             messages.push("Only letters are allowed for colors<br>")
+            discolors.value = null
         }
 
         if(invalidExtension(inspopic.value)) {
             messages.push("Type of file is not allowed<br>")
+            inspopic.value = null
         }
 
         if(invalidBudget(budget.value, 2000)[0]){
             if(invalidBudget(budget.value, 2000)[1] === 1) {
                 messages.push("Please enter digits only<br>")
+                budget.value = null
             } else {
                 messages.push("We encourage a budget of more than Ksh 2000<br>")
+                budget.value = null
             }
         }
         
@@ -140,3 +148,5 @@ if (reqform !== null) {
 function deleteDiv() {
     errorElement.style.display = 'none'
 }
+
+

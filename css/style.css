@@ -1,13 +1,17 @@
-/*General Styles*/
 * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 }
 
+@font-face {
+    font-family: poppins;
+    src: url(../fonts/Poppins-Light.ttf);
+}
+
 html {
-	font-size: 10px;
-	font-family: 'Gill Sans MT';
+	font-size: 8px;
+	font-family: poppins;
 	scroll-behavior: smooth;
 }
 
@@ -178,7 +182,7 @@ ul img:hover {
 	height: 100%;
 	width: 100%;
 	background-color: black;
-	opacity: .7;
+	opacity: .5;
 	z-index: -1;
 }
 #hero .hero {
@@ -270,7 +274,7 @@ ul img:hover {
 	height: 100%;
 	width: 100%;
 	background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-	opacity: .9;
+	opacity: .5;
 	z-index: -1;
 }
 #services .service-bottom .icon {
@@ -489,6 +493,8 @@ ul img:hover {
 }
 #footer .social-item:hover img {
 	filter: grayscale(0);
+	transform: translateY(-10px);
+	filter: drop-shadow(3px 7px 3px rgba(255, 255, 255, 0.568));
 }
 #footer p {
 	color: white;
@@ -548,5 +554,4 @@ ul img:hover {
 	body {
 	align-items: flex;
 	}
-
 }

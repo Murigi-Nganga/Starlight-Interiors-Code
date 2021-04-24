@@ -1,0 +1,164 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+    font-family: poppins,'Gill Sans MT';
+    font-size: 12.5px;
+}
+
+@font-face {
+    font-family: poppins;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+
+.reqscontainer {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  
+  .reqscontainer .req {
+    position: relative;
+    width: 300px;
+    height: 450px; 
+    background: white;
+    overflow: hidden;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 17px rgb(3, 16, 75);
+    transition: .4s;
+    margin-bottom: 100px;
+  }
+
+  /* .reqscontainer .req:hover {
+    transform:translateY(-10px);
+  } */
+
+  .reqscontainer .req .circle {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: black;
+    clip-path: circle(80px at center 0);
+    text-align: center;
+    color: white;
+    padding-top: 30px;
+  }
+  
+  .reqscontainer .req .content {
+    position: absolute;
+    top: 80px;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .reqscontainer .req .content button{
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border-radius: 40px;
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .reqscontainer .req .content span {
+      color: rgb(18, 175, 4);
+  }
+
+  .reqscontainer .reqimages img {
+      width: 420px;
+      border-radius: 20px;
+      transition: .5s;
+      margin: 30px;
+      cursor: pointer;
+      outline: none;
+  }
+
+  .reqscontainer .reqimages p {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-weight: bolder;
+      text-decoration: underline;
+      font-size: 13px;
+  }
+
+ .reqscontainer .req:nth-child(even) .circle, .reqscontainer .req:nth-child(odd)  #assign {
+    background: rgba(32, 90, 5, 0.753);
+  } 
+
+  .reqscontainer .req:nth-child(odd) .circle, .reqscontainer .req:nth-child(even)  #assign {
+    background: rgba(68, 11, 68, 0.781);
+  }
+
+
+  #formelement {
+    margin-left: 27%;
+    margin-top: -15%;
+    width: 60%;
+    display: none;
+    transition: .6s;
+    }
+
+  form {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      background-image: radial-gradient(rgba(4, 0, 255, 0.281),rgba(0, 255, 234, 0.281) );
+      border-radius: 12px;
+      padding: 25px;
+  }
+
+  form #clientID, form #rqID { 
+      pointer-events: none;
+  }
+
+  form #rqID {   /*Make field "invisible"*/
+    height: 0px;
+    width: 0px;
+    background: transparent;
+  }
+
+  form #submitassign {
+    padding: 6px 25px;
+    background: transparent;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-align: center;
+    outline: none;
+  }
+
+ #submitassign:hover {
+    border: 1px rgba(68, 11, 68, 0.781);
+    background: rgba(68, 11, 68, 0.781);
+    color: white;
+    transition:.5s;
+    outline: none;
+  }
+
+  form input {
+    border-radius: 7px;
+      height: 26px;
+      padding: 6px 20px;
+      border: none;
+      outline: none;
+  }
+
+  form label {
+      line-height: 26px;
+  }
+
+
+  /* .reqscontainer .req hr {
+      width: 76%;
+      margin: initial 12% 500px 12%;
+      top: 500px;
+      color:rgb(18, 175, 4);
+  } */
+

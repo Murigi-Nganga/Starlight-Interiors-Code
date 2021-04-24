@@ -4,7 +4,7 @@
         require_once "../includes/connection_inc.php";
         require_once "../includes/functions_inc.php";
 
-    // if(isset($_SESSION["AdminID"]) || isset($_SESSION["ClientID"]) || isset($_SESSION["DesignerID"]))
+    // if(isset($_SESSION["AdminID"]) || isset($_SESSION["ClientID"]) || isset($_SESSION["DesignerID"]))    -->Rolle hinzufuegen
     if(isset($_SESSION["role"])) {
         
         $sql = "SELECT Message FROM notifications WHERE ReceiverID = ?";
