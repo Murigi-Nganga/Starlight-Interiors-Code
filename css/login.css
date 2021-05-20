@@ -5,6 +5,11 @@
     font-size: 16px;
   }
 
+  @font-face {
+    font-family: poppins;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+
   .container {
       width: 100%;
       background-image: radial-gradient(rgba(25, 25, 29, 0.904), rgba(8, 8, 10, 0.144)), url(../images/banner.jpg);
@@ -54,6 +59,7 @@ nav ul li {
       justify-content:space-around;
       position: fixed;
       z-index: 1;
+      font-family: poppins;
   }
   
   .logo img {

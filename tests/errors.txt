@@ -1,4 +1,25 @@
 SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
 Insert value list does not match column list: the SQL statement consists of first a list of columns then a list of values, these two do not match.
-1136 Column count doesn't match value count at row 1 the problem is that the number of listed values is not the same as the number of listed columns.
+1136 Column count doesn't match value count at row 1 
+----------The problem is that the number of listed values is not the same as the number of listed columns.
 ********************************************************************************************************************************
+
+
+Fatal error: Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`interior_design`.`assignments`, CONSTRAINT `RequirementsID` FOREIGN KEY (`RequirementsID`) REFERENCES `requirements` (`RequirementsID`)) in C:\xampp\htdocs\Starlight-Interiors-Code\includes\functions_inc.php:364 Stack trace: #0 C:\xampp\htdocs\Starlight-Interiors-Code\includes\functions_inc.php(364): PDOStatement->execute(Array) #1 C:\xampp\htdocs\Starlight-Interiors-Code\includes\assign_inc.php(9): assignClient(Object(PDO), '38143117', 'jdoe@gmail.com', '2021-05-08 03:4...', '25') #2 {main} thrown in C:\xampp\htdocs\Starlight-Interiors-Code\includes\functions_inc.php on line 364
+
+----------Included Requirements column + value in the sql statement
+********************************************************************************************************************************
+
+
+DevTools failed to load SourceMap: 
+Could not load content for chrome-extension://fheoggkfdfchfphceeifdbepaooicaho/sourceMap/chrome/content.map: 
+HTTP error: status code 404, net::ERR_UNKNOWN_URL_SCHEME
+----------
+*********************************************************************************************************************************
+
+Fatal error: Uncaught PDOException: SQLSTATE[21000]: 
+Cardinality violation: 1241 Operand should contain 1 column(s) in 
+C:\xampp\htdocs\Starlight-Interiors-Code\php\progress.php:34 
+Stack trace: #0 C:\xampp\htdocs\Starlight-Interiors-Code\php\progress.php(34): 
+PDO->prepare('SELECT (Require...') #1 {main} thrown in C:\xampp\htdocs\Starlight-Interiors-Code\php\progress.php on line 34
+---------Removed brackets from (RequirementsID, DesignerID, ClientID, AssignmentDate)

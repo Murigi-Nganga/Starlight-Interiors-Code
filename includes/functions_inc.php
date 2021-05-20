@@ -87,6 +87,21 @@
             exit();
         }
 
+
+        function addRemarks($conn, $drawingID, $remarks) {
+            $sql = "UPDATE drawings SET ClientsRemarks = ? WHERE DrawingID = ?;"; 
+    
+            $stmt = $conn->prepare($sql);
+            if(!$stmt) {
+            header("location: ../php/drawings.php?error=stmtfailed"); 
+            exit();
+            }
+    
+            $stmt->execute([$remarks, $drawingID]);
+    
+            header("location: ../php/drawings.php?error=none");
+            exit();
+        }
         //Submit Payment Details
         function submitPayment($conn,$clientID,$amountPaid, $paymentPlatform, $paymentPurpose, $submissionDate) {
             $sql = "INSERT INTO payments (ClientID, AmountPaid, PaymentPlatform, PaymentPurpose, SubmissionDate) 
@@ -174,6 +189,102 @@
         }
     }
 
+    function dsnHasThisClient($conn, $clientID, $designerID) {           //Ensures a drawing is submitted only if the desiger is connected to a client with that ID
+        $userExists = userExists($conn,$clientID,$clientID);
+
+        if ($userExists === false) {
+            header("location: ../php/drawings.php?error=clientdoesntexist");   
+            exit();
+        }
+
+        $sql = 'SELECT * FROM assignments WHERE ClientID = ? AND DesignerID = ?'; 
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+            header("location: ../php/signup.php?error=stmtfailed");
+            exit();
+        }
+
+        $stmt->execute([$clientID, $designerID]);
+
+        if ($row = $stmt->fetch()) {
+            return true;                                                    //Change to return row if need be
+        } else {
+            return false;
+        }
+    }
+
+    function createDrawing($conn, $designerID, $drawingPicDestination, $drawingDescription, $drawingPrice, $submissionDate, $clientID) {
+
+        $sql = "INSERT INTO drawings (DesignerID, DrawingPic, DrawingDescription, SubmissionDate, ClientID, DrawingPrice) 
+        VALUES (?, ?, ?, ?, ?, ?);"; 
+
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+        header("location: ../php/drawings.php?error=stmtfailed"); 
+        exit();
+        }
+
+        $stmt->execute([$designerID, $drawingPicDestination, $drawingDescription, $submissionDate, $clientID, $drawingPrice]);
+
+        //If the creation is successful, push notification to the client
+        $designerExists = designerExists($conn, $designerID, $designerID);
+        $message = "Your designer with the ID " .$designerExists["DesignerID"]. " (" 
+                          .$designerExists["FirstName"]. " " .$designerExists["SecondName"]. ") has submitted a drawing for you!";
+
+        pushNotification($conn, $clientID, $message, 'drawings', $submissionDate);
+
+        header("location: ../php/drawings.php?error=none");
+        exit();
+
+    }
+
+    function createTask($conn, $designerID, $taskMessage, $creationDate) {
+
+        $sql = "INSERT INTO tasks (DesignerID, TaskMessage, CreationDate) 
+        VALUES (?, ?, ?);"; 
+
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+        header("location: ../php/tasks.php?error=stmtfailed"); 
+        exit();
+        }
+
+        $stmt->execute([$designerID, $taskMessage, $creationDate]);
+        
+        header("location: ../php/tasks.php?error=none");
+        exit();
+    }
+
+    function deleteTask($conn, $designerID, $taskID) {
+        $sql = "DELETE FROM tasks WHERE TaskID = ? AND DesignerID = ?;"; 
+
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+        header("location: ../php/tasks.php?error=stmtfailed"); 
+        exit();
+        }
+
+        $stmt->execute([$taskID, $designerID]);
+        
+        header("location: ../php/tasks.php?error=none");
+        exit();
+    }
+
+    function completedTask($conn, $designerID, $taskID) {
+        $sql = 'UPDATE tasks SET TaskStatus = "done" WHERE TaskID = ? AND DesignerID = ?'; 
+
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+        header("location: ../php/tasks.php?error=stmtfailed"); 
+        exit();
+        }
+
+        $stmt->execute([$taskID, $designerID]);
+        
+        header("location: ../php/tasks.php?error=none");
+        exit();
+    }
+
     /********************************************ADMIN FUNCTIONS*****************************************************/
     //Check if Admin exists
     function adminExists($conn,$idNumber,$email) {   
@@ -243,20 +354,16 @@
             exit();                                                             
         }
 
-        $sql  = "UPDATE requirements SET AssignedDesigner=".$designerExists["DesignerID"]." WHERE RequirementsID=".$requirementsID.";";
+        $sql  = "UPDATE requirements SET AssignedDesigner= ? WHERE RequirementsID= ?;";
         $stmt = $conn->prepare($sql);
 
         if(!$stmt) {
             header("location: ../php/requirements.php?error=stmtfailed");
         }
 
-        $stmt->execute();
+        $stmt->execute([$designerExists["DesignerID"], $requirementsID]);
 
-        if(assignmentExists($conn, $clientID) !== false){     
-            header("location: ../php/requirements.php?error=none");   
-            exit();                                                                        
-        } else {
-            $sql  = "INSERT INTO assignments (ClientID, DesignerID, AssignmentDate) VALUES (?, ?, ?);";
+            $sql  = "INSERT INTO assignments (ClientID, DesignerID, AssignmentDate, RequirementsID) VALUES (?, ?, ?, ?);";
             $stmt = $conn->prepare($sql);
             
             if(!$stmt) {
@@ -264,7 +371,7 @@
             exit();
             }
 
-            $stmt->execute([$clientID, $designerExists["DesignerID"], $today]);
+            $stmt->execute([$clientID, $designerExists["DesignerID"], $today, $requirementsID]);
             $userExists = userExists($conn, $clientID, $clientID);                                                      //To get client's other details
 
             $clientMessage = "You have been assigned to the designer with the ID number ".$designerExists["DesignerID"]."<br>".
@@ -283,7 +390,6 @@
             
             header("location: ../php/requirements.php?error=none");   
             exit();
-        }
     }
 
     function getPaymentDetails($conn, $clientID, $paymentID) {                                             //Gets payment details
@@ -322,6 +428,57 @@
             exit();
 
         }
+
+    }
+
+    function getDrawingsNumber($conn, $clientID) {
+        $sql = "SELECT * FROM drawings WHERE ClientID = ?";
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+            header("location: ../php/progress.php?error=stmtfailed"); 
+            exit();
+        }
+
+        $stmt->execute([$clientID]);
+        $numberOfDrawings = $stmt->rowCount();
+        return $numberOfDrawings;
+    }
+
+    function getDrawingPrice($conn, $drawingID) {
+        $sql = "SELECT * FROM drawings WHERE ClientID = ?";
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+            header("location: ../php/progress.php?error=stmtfailed"); 
+            exit();
+        }
+
+        $stmt->execute([$drawingID]);
+        $row = $stmt->fetch();
+        return $row["DrawingPrice"];
+    }
+
+    function completeWork($conn, $requirementsID, $clientID, $completionDate) {
+        $sql = "UPDATE requirements SET WorkCompleted = ? WHERE RequirementsID = ? AND ClientID = ?;";
+        $stmt = $conn->prepare($sql);
+        if(!$stmt) {
+            header("location: ../php/progress.php?error=stmtfailed"); 
+            exit();
+        }
+        
+        $stmt->execute(['yes', $requirementsID, $clientID]);
+
+        $sql = "UPDATE assignments SET CompletionDate = ? WHERE RequirementsID = ? AND ClientID = ?;";
+        if(!$stmt) {
+            header("location: ../php/progress.php?error=stmtfailed"); 
+            exit();
+        }
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$completionDate, $requirementsID, $clientID]);
+        $message = "Thank you for working with us! <br>Your work has been completed!";
+        pushNotification($conn, $clientID, $message,'requirements', $completionDate);
+
+        header("location: ../php/progress.php?error=none"); 
+        exit();
 
     }
 

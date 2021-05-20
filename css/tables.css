@@ -47,7 +47,8 @@ nav {
 	align-items: center;
 	justify-content: space-around;
 	z-index: 10;
-    background-color: rgb(23, 8, 46);
+    background-color: rgb(41, 50, 60);
+	font-family: poppins;
 }
 
 .logo img {
@@ -123,3 +124,39 @@ table tr td form #invisible {
     width: 0;
     display: none;
 }
+table {
+	padding: 3px;
+}
+
+th {
+	background-color: rgb(140, 154, 160);
+	font-weight: bold;
+}
+
+tr {
+	padding: 10px;
+}
+
+tr:nth-child(even) {
+	background-color: aquamarine;
+}
+
+button, #confirm {
+    width: 85%;
+    padding: 3px 10px;
+    cursor: pointer;
+    display: block;
+    margin: 4px 2px;
+    color:rgb(0, 0, 0);
+    outline: none;
+    border-radius: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    background: rgb(255,255,255);
+  }
+
+button:hover, #confirm:hover {
+    background: black;
+    transition: .5s;
+    border: transparent;
+    color: white;
+  }

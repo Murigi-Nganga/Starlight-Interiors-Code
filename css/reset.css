@@ -1,9 +1,12 @@
-* , form, h2, h1, p, input{
-    padding: none;
-    border: none;
-    margin: none;
+a, body, div, footer, form, h1, h2, h3, h4, h5, h6,
+header, html, i,  img,   label,  li,  nav,  ol,  p,  section,  
+span,  strong, table, tbody, td, tfoot, th, tr,  ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
     box-sizing: border-box;
-    background: none;
 }
 
 /* Mehr hinzufuegen */

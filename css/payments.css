@@ -9,7 +9,7 @@
   font-size: 17px;
   font-weight: 100;
   box-sizing: border-box;
-  font-family:poppins;
+  font-family:'Gill Sans MT';
 }
 
 
@@ -55,6 +55,7 @@ nav {
 	justify-content:space-around;
     background-color: rgb(41, 50, 60);
     margin-bottom: 3%;
+    font-family: poppins;
 }
 
 .logo img {
@@ -71,6 +72,17 @@ nav {
 	font-family: 'Trebuchet MS';
 	cursor: pointer;
 }
+ul img {
+	margin-bottom: -10px;
+	height: 30px;
+	width: 30px;
+	filter: hue-rotate(0.4turn) drop-shadow(7px 3px 7px rgba(102, 158, 107, 0.795));
+}
+
+
+ul img:hover {
+	filter: drop-shadow(7px 3px 7px red) hue-rotate(0.4turn);
+}
 /*End of Navigation Section*/
 
 #display-errors{
@@ -80,7 +92,7 @@ nav {
     width: 350px;
     padding: 15px;
     margin-left: 70%;
-    margin-top: 11%;
+    margin-top: 0%;
     transition: .5s;
     color: white;
     display: none;
@@ -121,6 +133,31 @@ form input, select {
     border-bottom: 1px solid rgba(0, 0, 0, 0.712);
     border-radius: 30px;
     outline: none;
+}
+
+input:focus, select:focus {
+  box-shadow:3px 7px 3px rgb(41, 50, 60);
+  transition: .6s;
+  background: rgb(245, 245, 245);
+}
+
+.pay-options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.pay-option {
+  margin: 30px 100px;
+  background-image:linear-gradient(145deg,rgb(2, 2, 29), rgb(4, 53, 59));
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+} 
+
+h2 {
+  color: bisque;
+  text-transform: uppercase;
 }
 
 input::-webkit-outer-spin-button,

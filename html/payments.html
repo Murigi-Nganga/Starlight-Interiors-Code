@@ -16,17 +16,35 @@
             Starlight Interiors
         </div>
         <ul>
+          <li><a href="../php/notifications.php"><img src="../images/MessagesBell.png" alt="No messages Notification Bell"></a></li>
             <li><a href="../php/index.php">Home</a></li>
             <li><a href="../php/requirements.php">Requirements</a></li>
             <li><a href="../php/drawings.php">Drawings</a></li>
-            <li><a href="../php/payments.php" style="color:peru">Payments</a></li>
+            <li><a href="../php/payments.php" style="color:peru;">Payments</a></li>
             <li><a href="../includes/logout_inc.php">Log Out</a></li>
         </ul>
     </nav>
 
     <div id='display-errors'></div>
+    <div class="pay-options">
+      <div class="pay-option">
+         <h2>Online Banking Accounts</h2><br>
+        KCB: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;522522<br>
+        ABSA: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;229522<br>
+        Barclays: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;522345<br>
+        Equity Bank: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;578522<br>
+      </div>
+      <div class="pay-option">
+        <h2>MPESA</h2><br> 
+        Till Number:  555555
+      </div>
+      <div class="pay-option">
+        <h2>Airtel-Money </h2><br>
+        Number: 0734 34 34 34
+      </div>
+    </div>
 	<div class="formarea">
-        <h1 style="text-align: center; font-weight:bolder; font-size:21px; text-decoration:underline;">Requirements Specification</h1>
+        <h1 style="text-align: center; font-weight:bolder; font-size:21px; text-decoration:underline;">Payment Details Form</h1>
         <br><br>
 
     <form id='payform' name='payform'  action="../includes/payments_inc.php" method="POST">
@@ -40,6 +58,7 @@
             <option value="M-Pesa">M-pesa</option>
             <option value="Airtel Money">Airtel Money</option>
         </select><br>
+        <!--Add MPESA, Credit Card and Airtel Money Icons-->
 
         <label for="paymentPurpose">3. Enter the purpose of payment</label>
 		<select name="paymentPurpose" id="paymentPurpose">
@@ -56,7 +75,6 @@
     <div class="footer container">
       <div class="social-icon">
         <div class="social-item">
-          <!--We are Social 😁</h3-->
           <a href="#"><img src="../images/gp.png"/></a>
         </div>
         <div class="social-item">

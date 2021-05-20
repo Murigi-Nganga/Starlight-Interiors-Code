@@ -58,7 +58,7 @@ document.getElementById('smallform').addEventListener('submit', (e) => {
 })
 
 /*Error: If statements in the Requirement Form Event Listener were not working
-Solution: 
+---reqForm was NULL
 }*/
 
 

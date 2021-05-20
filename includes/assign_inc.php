@@ -5,7 +5,7 @@
         $clientID = $_POST["clientID"];
         $designerID = $_POST["designerID"];
         $requirementsID = $_POST["rqID"];
-        $today = date("Y-m-d H:i:s");
+        $today = date("Y-m-d h:ia");
         assignClient($conn, $clientID, $designerID, $today, $requirementsID);
 
         header("location: ../php/requirements.php?error=none");

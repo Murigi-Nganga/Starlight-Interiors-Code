@@ -30,6 +30,7 @@ payform.addEventListener('submit', (e) =>{
 	}
 	if(messages.length > 0) {
 		e.preventDefault()
+		window.scrollTo(0, 0)
 		errorElement.style.display = 'block'
 		messages.unshift('<p id="closebutton" onclick="deleteDiv()">X</p>')
 		errorElement.innerHTML = messages.join("")

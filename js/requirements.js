@@ -1,17 +1,17 @@
 /*Validation Functions*/
 /*Functions return true if there is an error*/ 
 
-var nav = document.getElementById('nav')
+// var nav = document.getElementById('nav')
 
-document.addEventListener('scroll', () => {
-	var scroll_position = window.scrollY
-	if (scroll_position > 5) {
-        nav.style.position = 'fixed'
-	} else {
-		nav.style.position = 'initial'
-	}
-  nav.style.transition = '.6s'
-});
+// document.addEventListener('scroll', () => {
+// 	var scroll_position = window.scrollY
+// 	if (scroll_position > 5) {
+//         nav.style.position = 'fixed'
+// 	} else {
+// 		nav.style.position = 'initial'
+// 	}
+//   nav.style.transition = '.6s'
+// });
 
 function emptyInput(...values) {                                
     let isEmpty = false
@@ -133,7 +133,8 @@ if (reqform !== null) {
         }
         
         if (messages.length > 0) {
-            window.location.href = 'http://localhost/Starlight-Interiors-Code/php/requirements.php#reqform'
+            window.scrollTo(0, 0)
+            // window.location.href = 'http://localhost/Starlight-Interiors-Code/php/requirements.php#show';
             e.preventDefault()
             if(messages[0] === "Please fill in all fields<br>") {
                 messages = messages.splice(0,1)

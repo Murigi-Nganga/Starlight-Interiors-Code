@@ -1,16 +1,20 @@
 @font-face {
-    font-family: akronim;
-    src: url(../fonts/LobsterTwo-Regular.ttf);
+    font-family: poppins;
+    src: url(../fonts/Poppins-Regular.ttf);
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-size: 20px;
-    font-weight: 100;
+    font-size: 19px;
     box-sizing: border-box;
-    font-family: akronim;
+	color:rgb(6, 5, 65);
+    font-family: 'Gill Sans MT';
   }
+
+.active {
+    color: peru;
+}
 
  /* Navigation section */
 nav ul li {
@@ -54,9 +58,11 @@ nav {
 	justify-content:space-around;
     background-color: rgb(41, 50, 60);
     margin-bottom: 3%;
+    z-index: 100;
+    font-family: poppins;
 }
 
-.logo img {
+.logo img, #logo img {
 	width: 50px;
 	cursor: pointer;
 }
@@ -70,4 +76,176 @@ nav {
 	font-family: 'Trebuchet MS';
 	cursor: pointer;
 }
+
+ul img {
+	margin-bottom: -10px;
+	height: 30px;
+	width: 30px;
+	filter: hue-rotate(0.4turn) drop-shadow(7px 3px 7px rgba(102, 158, 107, 0.795));
+}
+
+
+ul img:hover {
+	filter: drop-shadow(7px 3px 7px red) hue-rotate(0.4turn);
+}
 /*End of Navigation Section*/
+
+#nodraw{
+    margin-left: 40%;
+    margin-top: 20%;
+}
+
+/* Drawing Pic Form */
+#drawingform{
+    display: flex;
+    flex-direction: column;
+    border:1px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    width: 65%;
+    margin-top: 0px;
+    margin-left: 20%;
+    padding: 30px 30px 30px 30px;
+    margin-bottom: 30px;
+    background-image: radial-gradient(rgba(4, 0, 255, 0.281),rgba(0, 255, 234, 0.281) );
+}
+
+#drawingform input, select {
+    padding: 17px 20px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.712);
+    border-radius: 30px;
+    outline: none;
+}
+
+
+#submit-drawing {
+    width: 30%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    color:rgb(0, 0, 0);
+    outline: none;
+    border-radius: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    background: white;
+  }
+
+  #submit-drawing:hover {
+    background: black;
+    transition: .5s;
+    border: transparent;
+    color: white;
+  }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus, textarea:focus {
+    box-shadow:3px 7px 3px rgb(41, 50, 60);
+    transition: .6s;
+}
+
+#drdetails {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  #drdetail {
+    margin: 30px 100px;
+    background-image:linear-gradient(145deg,rgb(2, 2, 29), rgb(4, 53, 59));
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+  } 
+
+#drawing-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#drawing-items img {
+    width: 350px;
+    border-radius: 8px;
+    margin: 25px 60px;
+    cursor: pointer;
+}
+
+#drawing-item {
+    display: flex;
+    flex-direction: column;
+}
+
+#drawing-item  #submitRemarks{
+    position: relative;
+    left: -250px;
+    top: 50px;
+}
+
+#drawingID {
+    pointer-events: none;
+    height: 0px;
+    width: 0px;
+    border: none;
+    outline: none;
+}
+
+.details-box {
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(transparent,rgba(3, 191, 197, 0.205), transparent);
+}
+
+textarea {
+    padding: 8px;
+    border-radius: 12px;
+}
+
+#submitRemarks {
+    padding: 10px 30px;
+    cursor: pointer;
+    color:rgb(0, 0, 0);
+    outline: none;
+    border-radius: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    background: white;
+  }
+
+  #submitRemarks:hover {
+    background: black;
+    transition: .5s;
+    border: transparent;
+    color: white;
+  }
+
+  #gwdesign {
+    padding: 10px 20px;
+    cursor: pointer;
+    color:rgb(0, 0, 0);
+    outline: none;
+    border-radius: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    background: white;
+    margin-top: 8px;
+  }
+
+  #gwdesign:hover {
+    background: black;
+    transition: .5s;
+    border: transparent;
+    color: white;
+  }
+
+  #drawid {
+      pointer-events: none;
+      background: transparent;
+      height: 0px;
+      width: 0px;
+      display:none;
+  }

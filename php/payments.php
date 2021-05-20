@@ -3,6 +3,16 @@
     require_once "../includes/connection_inc.php";
     if($_SESSION["role"] === 'client') {
         include_once "../html/payments.html";
+        if(isset($_GET["amount"])) {
+            echo '<span id="amount" Your budget is Ksh '. $_GET["amount"].'</span>';
+        }
+        if(isset($_GET['error'])) {
+            if($_GET['error'] === 'none'){
+                echo '<script>alert("Your payment details have been submitted successfully!")</script>';
+            } elseif ($_GET['error'] === 'noasst') {
+                echo '<script>alert("Your have not been assigned to any designer yet!")</script>';
+            }
+        }
     } elseif($_SESSION["role"] === 'admin') {
         echo '<!DOCTYPE html>
         <html lang="en">
@@ -22,10 +32,11 @@
                     Starlight Interiors
                 </div>
                 <ul>
+                    
                     <li><a href="../php/index.php">Home</a></li>
                     <li><a href="../php/requirements.php">Requirements</a></li>
-                    <li><a href="../php/drawings.php">Drawings</a></li>
-                    <li><a href="../php/payments.php" style="color:coral">Payments</a></li>
+                    <li><a href="../php/progress.php">Progress</a></li>
+                    <li><a href="../php/payments.php" style="color:peru">Payments</a></li>
                     <li><a href="../includes/logout_inc.php">Log Out</a></li>
                 </ul>
             </nav>';
